@@ -68,4 +68,14 @@ I'm FRBIE, a passionate developer exploring the world of code and technology.
   <img src="https://streak-stats.demolab.com/?user=FRBIE&theme=catppuccin_latte&hide_border=false&hide_border=true" alt="FRBIE's GitHub Streak" />
 </p>
 
+--- 
+
+### 🐍 My GitHub Contribution Snake
+
+<p align="center">
+  <img src="./assets/github-contribution-grid-snake.svg" alt="FRBIE's Contribution Snake" />
+  <!-- Or if you prefer the GIF: -->
+  <!-- <img src="./assets/github-contribution-grid-snake.gif" alt="FRBIE's Contribution Snake" /> -->
+</p>
+
 ---

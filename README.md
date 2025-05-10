@@ -69,26 +69,3 @@ I'm FRBIE, a passionate developer exploring the world of code and technology.
 </p>
 
 ---
-
-
-### ✨ My Pinned Projects
-  <p align="center">
-    <a href="https://github.com/FRBIE/ai-picture-backend">
-      <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=FRBIE&repo=ai-picture-backend&theme=catppuccin_latte" />
-    </a>
-    <a href="https://github.com/FRBIE/ai-agent">
-      <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=FRBIE&repo=ai-agent&theme=catppuccin_latte" />
-    </a>
-    <a href="https://github.com/FRBIE/Joy-OJ">
-      <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=FRBIE&repo=Joy-OJ&theme=catppuccin_latte" />
-    </a>
-    <a href="https://github.com/FRBIE/SMS-ES">
-      <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=FRBIE&repo=SMS-ES&theme=catppuccin_latte" />
-    </a>
-  </p>
-
----
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=FRBIE&label=Profile%20Views&color=0e75b6&style=flat-square" alt="profile views" />
-</p>

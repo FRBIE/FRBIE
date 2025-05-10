@@ -1,39 +1,43 @@
+# .github/workflows/snake.yml
+
 name: Generate Snake
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day
+    # 每天 UTC 时间 00:00 运行
     - cron: "0 0 * * *"
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch: # 允许手动触发
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      # Grant permissions for the action to commit to the repository
-      contents: write 
+      # 授予 action 向仓库提交内容的权限
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # Updated to v4 for best practice
+        uses: actions/checkout@v4
 
       - name: Generate Snake Animation
-        uses: Platane/snk@v3 # Using v3 of the action
+        uses: Platane/snk@v3 # <--- 修改这里，去掉 /svg-only
         id: snake-gif
         with:
-          github_user_name: FRBIE # IMPORTANT: Use your GitHub username
-          # Outputs for both GIF and SVG are generated
+          github_user_name: FRBIE # 重要：使用你的 GitHub 用户名
+          # 下面的 gif_out_path 和 svg_out_path 在 Platane/snk@v3 中是有效的
           gif_out_path: ./assets/github-contribution-grid-snake.gif
           svg_out_path: ./assets/github-contribution-grid-snake.svg
-          # Optionally, you can customize colors like your catppuccin_latte theme
-          # color_snake: "#DD4A48" # Example: using your accent color for the snake
-          # color_dots: "#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0" # Example: catppuccin latte dots
+          # (可选) 你可以自定义颜色以匹配你的 catppuccin_latte 主题
+          # color_snake: "#DD4A48"
+          # color_dots: "#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0"
+          # 被注释掉的 outputs 部分对于 Platane/snk@v3 不是必需的，可以删除或保留注释
+          # outputs:
+          #   - dist/github-contribution-grid-snake.svg
+          #   - dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+          #   - dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
 
       - name: Push to GitHub
-        uses: EndBug/add-and-commit@v9 # Updated to v9
+        uses: EndBug/add-and-commit@v9
         with:
-          branch: main # Or your default branch (e.g., master)
+          branch: main # 或者你的默认分支 (例如 master)
           message: 'feat: Generate Contribution Snake'
-          # The add-and-commit action will automatically add the generated files
-          # if they are in the git staging area, which they will be if created/modified.
-          # We ensure the assets directory is part of what's committed.
-          add: './assets/*' # Make sure to commit the assets directory
+          add: './assets/*' # 这个配置对于将 ./assets/ 目录下的文件提交是正确的

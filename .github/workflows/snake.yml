@@ -18,24 +18,39 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 新增：确保 assets 目录存在
+      - name: Create assets directory
+        run: mkdir -p ./assets
+
       - name: Generate Snake Animation
-        # 重要修改：使用 Platane/snk@v3 而不是 Platane/snk/svg-only@v3
-        # Platane/snk@v3 支持 gif_out_path 和 svg_out_path
         uses: Platane/snk@v3
         id: snake-gif
         with:
           github_user_name: FRBIE # 确保这是你的 GitHub 用户名
-          # 以下参数对于 Platane/snk@v3 是有效的
           gif_out_path: ./assets/github-contribution-grid-snake.gif
           svg_out_path: ./assets/github-contribution-grid-snake.svg
           # (可选) 你可以自定义颜色以匹配你的 catppuccin_latte 主题
           # color_snake: "#DD4A48"
           # color_dots: "#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0"
-          # 对于 Platane/snk@v3，不需要下面被注释掉的 'outputs' 部分，可以删除
-          # outputs:
-          #   - dist/github-contribution-grid-snake.svg
-          #   - dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-          #   - dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+        # 如果 snk 动作失败，通常会在这里显示错误
+        # 可以添加 continue-on-error: true 来调试后续步骤，但不推荐用于最终版本
+        # continue-on-error: true
+
+      - name: Verify generated files # 新增：调试步骤，检查文件是否生成
+        run: |
+          echo "Checking for generated files in ./assets/:"
+          ls -l ./assets/
+          if [ -f "./assets/github-contribution-grid-snake.gif" ]; then
+            echo "GIF found."
+          else
+            echo "GIF NOT found."
+          fi
+          if [ -f "./assets/github-contribution-grid-snake.svg" ]; then
+            echo "SVG found."
+          else
+            echo "SVG NOT found."
+          fi
+        # continue-on-error: true # 允许工作流继续，即使文件未找到，以便查看 add-and-commit 的行为
 
       - name: Push to GitHub
         uses: EndBug/add-and-commit@v9
@@ -44,4 +59,11 @@ jobs:
           branch: main # 或者你的默认分支 (例如 master)
           message: 'feat: Generate Contribution Snake'
           # 当上一步成功在 ./assets/ 中创建文件后，这里就能找到它们了
-          add: './assets/*'
+          add: './assets/*' # 使用引号确保 glob 模式正确传递
+          # 新增：明确指定提交者为 GitHub Actions bot
+          default_author: github_actions
+          # 旧版可能需要：
+          # committer_name: github-actions[bot]
+          # committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+          # author_name: github-actions[bot]
+          # author_email: 41898282+github-actions[bot]@users.noreply.github.com

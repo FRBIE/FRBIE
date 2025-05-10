@@ -19,17 +19,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate Snake Animation
-        uses: Platane/snk@v3 # <--- 修改这里，去掉 /svg-only
+        # 重要修改：使用 Platane/snk@v3 而不是 Platane/snk/svg-only@v3
+        # Platane/snk@v3 支持 gif_out_path 和 svg_out_path
+        uses: Platane/snk@v3
         id: snake-gif
         with:
-          github_user_name: FRBIE # 重要：使用你的 GitHub 用户名
-          # 下面的 gif_out_path 和 svg_out_path 在 Platane/snk@v3 中是有效的
+          github_user_name: FRBIE # 确保这是你的 GitHub 用户名
+          # 以下参数对于 Platane/snk@v3 是有效的
           gif_out_path: ./assets/github-contribution-grid-snake.gif
           svg_out_path: ./assets/github-contribution-grid-snake.svg
           # (可选) 你可以自定义颜色以匹配你的 catppuccin_latte 主题
           # color_snake: "#DD4A48"
           # color_dots: "#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0"
-          # 被注释掉的 outputs 部分对于 Platane/snk@v3 不是必需的，可以删除或保留注释
+          # 对于 Platane/snk@v3，不需要下面被注释掉的 'outputs' 部分，可以删除
           # outputs:
           #   - dist/github-contribution-grid-snake.svg
           #   - dist/github-contribution-grid-snake-dark.svg?palette=github-dark
@@ -38,6 +40,8 @@ jobs:
       - name: Push to GitHub
         uses: EndBug/add-and-commit@v9
         with:
+          # 'branch' 是 EndBug/add-and-commit@v9 的有效输入
           branch: main # 或者你的默认分支 (例如 master)
           message: 'feat: Generate Contribution Snake'
-          add: './assets/*' # 这个配置对于将 ./assets/ 目录下的文件提交是正确的
+          # 当上一步成功在 ./assets/ 中创建文件后，这里就能找到它们了
+          add: './assets/*'

@@ -17,8 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        # 确保检出的是你想要提交到的分支
+        with:
+          ref: main # 或者你的默认分支名，例如 master
 
-      # 新增：确保 assets 目录存在
       - name: Create assets directory
         run: mkdir -p ./assets
 
@@ -27,43 +29,43 @@ jobs:
         id: snake-gif
         with:
           github_user_name: FRBIE # 确保这是你的 GitHub 用户名
-          gif_out_path: ./assets/github-contribution-grid-snake.gif
-          svg_out_path: ./assets/github-contribution-grid-snake.svg
+          # 重要修改：将 gif_out_path 和 svg_out_path 移至 outputs
+          outputs: |
+            ./assets/github-contribution-grid-snake.svg
+            ./assets/github-contribution-grid-snake.gif
           # (可选) 你可以自定义颜色以匹配你的 catppuccin_latte 主题
-          # color_snake: "#DD4A48"
-          # color_dots: "#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0"
-        # 如果 snk 动作失败，通常会在这里显示错误
-        # 可以添加 continue-on-error: true 来调试后续步骤，但不推荐用于最终版本
-        # continue-on-error: true
+          # 例如，为 SVG 和 GIF 指定不同或相同的颜色
+          # ./assets/github-contribution-grid-snake.svg?color_snake=#DD4A48&color_dots=#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0
+          # ./assets/github-contribution-grid-snake.gif?color_snake=#DD4A48&color_dots=#D9E0EE,#C6D0F5,#B3BDED,#A0ACE7,#8D9BE0
+        # 如果需要，可以从环境变量 GITHUB_TOKEN 传入 token，但 Platane/snk 通常会自动使用它
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Verify generated files # 新增：调试步骤，检查文件是否生成
+      - name: Verify generated files # 调试步骤，检查文件是否生成
         run: |
           echo "Checking for generated files in ./assets/:"
-          ls -l ./assets/
+          ls -la ./assets/
           if [ -f "./assets/github-contribution-grid-snake.gif" ]; then
             echo "GIF found."
           else
             echo "GIF NOT found."
+            exit 1 # 如果文件未找到，则使步骤失败，以便更快地发现问题
           fi
           if [ -f "./assets/github-contribution-grid-snake.svg" ]; then
             echo "SVG found."
           else
             echo "SVG NOT found."
+            exit 1 # 如果文件未找到，则使步骤失败
           fi
-        # continue-on-error: true # 允许工作流继续，即使文件未找到，以便查看 add-and-commit 的行为
 
       - name: Push to GitHub
         uses: EndBug/add-and-commit@v9
         with:
-          # 'branch' 是 EndBug/add-and-commit@v9 的有效输入
+          # 'branch' 是 EndBug/add-and-commit@v9 的有效输入，用于指定提交到哪个分支
+          # 如果 checkout 步骤已经检出了正确的分支，这里通常可以省略或与 checkout 的分支一致
           branch: main # 或者你的默认分支 (例如 master)
           message: 'feat: Generate Contribution Snake'
-          # 当上一步成功在 ./assets/ 中创建文件后，这里就能找到它们了
           add: './assets/*' # 使用引号确保 glob 模式正确传递
-          # 新增：明确指定提交者为 GitHub Actions bot
           default_author: github_actions
-          # 旧版可能需要：
-          # committer_name: github-actions[bot]
-          # committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-          # author_name: github-actions[bot]
-          # author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          # 你也可以考虑使用 'push' 参数来更明确地控制推送行为，例如：
+          # push: 'main --force' # 或 'true' 推送到当前分支的跟踪分支

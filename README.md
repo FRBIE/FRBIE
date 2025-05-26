@@ -63,9 +63,11 @@ I'm FRBIE, a passionate developer exploring the world of code and technology.
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=FRBIE&show_icons=true&theme=catppuccin_latte&rank_icon=github&hide_border=false&card_width=450&hide_border=true" alt="FRBIE's GitHub Stats" />
   <br/>
+    <img src="https://streak-stats.demolab.com/?user=FRBIE&theme=catppuccin_latte&hide_border=false&hide_border=true" alt="FRBIE's GitHub Streak" />
+    <br/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FRBIE&layout=compact&theme=catppuccin_latte&hide_border=false&card_width=450&hide_border=true" alt="FRBIE's Top Languages" />
-  <br/>
-  <img src="https://streak-stats.demolab.com/?user=FRBIE&theme=catppuccin_latte&hide_border=false&hide_border=true" alt="FRBIE's GitHub Streak" />
+
+
 </p>
 
 --- 

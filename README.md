@@ -4,16 +4,7 @@
   </a>
 </p>
 
----
 
-### 👋 About Me
-
-I'm FRBIE, a passionate developer exploring the world of code and technology.
-
-*   🔭 I’m currently working on **[AI Agent、OJ]**
-*   📫 How to reach me: **[2537821837@qq.com]**
-
----
 
 ### 🛠️ Languages and Tools:
 
@@ -56,28 +47,5 @@ I'm FRBIE, a passionate developer exploring the world of code and technology.
   <!-- 更多图标可以在这里找到: https://devicon.dev/ -->
 </p>
 
----
-
-### 📊 My GitHub Stats:
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=FRBIE&show_icons=true&theme=catppuccin_latte&rank_icon=github&hide_border=false&card_width=450&hide_border=true" alt="FRBIE's GitHub Stats" />
-  <br/>
-    <img src="https://streak-stats.demolab.com/?user=FRBIE&theme=catppuccin_latte&hide_border=false&hide_border=true" alt="FRBIE's GitHub Streak" />
-    <br/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=FRBIE&layout=compact&theme=catppuccin_latte&hide_border=false&card_width=450&hide_border=true" alt="FRBIE's Top Languages" />
 
 
-</p>
-
---- 
-
-### 🐍 My GitHub Contribution Snake
-
-<p align="center">
-  <img src="./assets/github-contribution-grid-snake.svg" alt="FRBIE's Contribution Snake" />
-  <!-- Or if you prefer the GIF: -->
-  <!-- <img src="./assets/github-contribution-grid-snake.gif" alt="FRBIE's Contribution Snake" /> -->
-</p>
-
----
